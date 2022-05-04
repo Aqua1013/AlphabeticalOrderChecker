@@ -1,6 +1,6 @@
 import com.sun.istack.internal.NotNull;
 
-public final class Words {
+public final class StringUtil {
 
     /**
      * @param word
@@ -14,11 +14,23 @@ public final class Words {
         for (char c : word) if (c < word[0] && c != ' ') return false;
         return true;
     }
-
-    @NotNull
+    
+    @Deprecated
     public static boolean isAlphabeticalOrder(String word){
         char[] temp = word.toLowerCase().toCharArray();
-        for (char c : temp) if (c < temp[0] && c != ' ') return false;
+        for(char c : temp)
+            if (c < temp[0] && c != ' ') return false;
+        return true;
+    }
+    
+    public static boolean isAlphabeticalOrder(String word){
+        if(word.equals(null)) return false;
+        word = word.toLowerCase();
+        char bound = word.charAt(0);
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if (c < bound && c != ' ') return false;
+        }
         return true;
     }
 
