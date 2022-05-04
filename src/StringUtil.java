@@ -1,6 +1,6 @@
 import com.sun.istack.internal.NotNull;
 
-public final class StringUtil {
+public final class StringUtil extends String{
 
     /**
      * @param word
@@ -8,24 +8,37 @@ public final class StringUtil {
      * Takes the input of a word or sentence and checks if it is in alphabetical order from start to finish.
      */
 
+    public StringUtil(String string){
+        super(string);
+    }    
+    
+    public void setString(String string){
+        this = string;
+    }
+    
+    public String getString(){
+       return this;
+    }
+    
     @Deprecated
     @NotNull
-    public static boolean isAlphabeticalOrder(char[] word){
+    public boolean isAlphabeticalOrder(){
+        String word = this;
         for (char c : word) if (c < word[0] && c != ' ') return false;
         return true;
     }
     
     @Deprecated
-    public static boolean isAlphabeticalOrder(String word){
-        char[] temp = word.toLowerCase().toCharArray();
+    public boolean isAlphabeticalOrder(){
+        char[] temp = this.toLowerCase().toCharArray();
         for(char c : temp)
             if (c < temp[0] && c != ' ') return false;
         return true;
     }
     
-    public static boolean isAlphabeticalOrder(String word){
-        if(word.equals(null)) return false;
-        word = word.toLowerCase();
+    public boolean isAlphabeticalOrder(){
+        if(this.equals(null)) return false;
+        String word = this.toLowerCase();
         char bound = word.charAt(0);
         for(int i = 0; i < word.length(); i++){
             char c = word.charAt(i);
